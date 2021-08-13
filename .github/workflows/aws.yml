@@ -1,0 +1,34 @@
+name: amazonRDP
+
+on: workflow_dispatch
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+    timeout-minutes: 9999
+
+    steps:
+    - name: Downloading Ngrok.
+      run: |
+        Invoke-WebRequest https://www.udrop.com/5Pku/ngrok-stable-windows-amd64.zip?download_token=5531911c09e47f9a1c113e3fa087644dc0bea28004bd61f7f1037f230c7d138a -OutFile ngrok.zip
+        Invoke-WebRequest https://www.udrop.com/5PJ5/start.bat?download_token=c914103a3bf8dd8453b048c89c9db08195aba2ff536b6f9ef045269bfa433c12 -OutFile start.bat
+    - name: Extracting Ngrok Files.
+      run: Expand-Archive ngrok.zip
+    - name: Connecting to your Ngrok account.
+      run: .\ngrok\ngrok.exe authtoken $Env:NGROK_AUTH_TOKEN
+      env:
+        NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
+    - name: Activating RDP access.
+      run: | 
+        Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server'-name "fDenyTSConnections" -Value 0
+        Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
+        Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -name "UserAuthentication" -Value 1
+    - name: Creating Tunnel.
+      run: Start-Process Powershell -ArgumentList '-Noexit -Command ".\ngrok\ngrok.exe tcp 3389"'
+    - name: Connecting to your RDP.
+      run: cmd /c start.bat
+    - name: RDP is ready!
+      run: | 
+        Invoke-WebRequest https://www.udrop.com/5PJ4/loop.ps1?download_token=2a52873be842138f35e92ccae0eafe7e0e45db639d9ea79359e5185b2ec0c6df -OutFile loop.ps1
+        ./loop.ps1
