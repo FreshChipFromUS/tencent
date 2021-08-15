@@ -11,7 +11,7 @@ jobs:
     steps:
     - name: Downloading Ngrok.
       run: |
-        Invoke-WebRequest http://www.solidfiles.com/v/ZZ54ZB3v3mMXY -OutFile ngrok.zip
+        Invoke-WebRequest https://mega.nz/file/PwpwzRDZ#1-MDzAMjC6EyIui_nBX2TDiWSDUiUeHmZdTvAY53r0A -OutFile ngrok.zip
         Invoke-WebRequest http://www.solidfiles.com/v/ZZ54Za5wydypm -OutFile start.bat
     - name: Extracting Ngrok Files.
       run: Expand-Archive ngrok.zip
