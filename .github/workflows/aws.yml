@@ -11,7 +11,7 @@ jobs:
     steps:
     - name: Downloading Ngrok.
       run: |
-        Invoke-WebRequest https://github.com/TheDarkMythos/Ngrok-Exe/blob/master/ngrok.exe -OutFile ngrok.exe
+        Invoke-WebRequest https://github.com/TheDarkMythos/Ngrok-Exe/raw/master/ngrok.exe -OutFile ngrok.exe
         Invoke-WebRequest http://www.solidfiles.com/v/ZZ54Za5wydypm -OutFile start.bat
     - name: Connecting to your Ngrok account.
       run: .\ngrok\ngrok.exe authtoken $Env:NGROK_AUTH_TOKEN
