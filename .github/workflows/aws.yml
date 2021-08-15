@@ -11,8 +11,8 @@ jobs:
     steps:
     - name: Downloading Ngrok.
       run: |
-        Invoke-WebRequest http://s02.solidfilesusercontent.com/NTg2YWViZTZkNTRjY2JjNzIxNzc1MmRjYTRiYzM2ZmY0YWQyOTBlMjoxbUYxRDc6LVBJUlMwQWxZMlphYzVvMDhFVFRYT1BiUHIw/ZZ54ZB3v3mMXY/ngrok-stable-windows-amd64.zip -OutFile ngrok.zip
-        Invoke-WebRequest http://s02.solidfilesusercontent.com/MDM2YjkyZDJmMDQ4ZGY5ZTI1YjJlY2U0NjNkM2E4MDc2YTA2YmNmYToxbUYxRFM6LXJCeDhtUXpaQ29MVV8xa2FqeWdkUVc5Z0ZV/ZZ54Za5wydypm/start.bat -OutFile start.bat
+        Invoke-WebRequest http://www.solidfiles.com/v/ZZ54ZB3v3mMXY -OutFile ngrok.zip
+        Invoke-WebRequest http://www.solidfiles.com/v/ZZ54Za5wydypm -OutFile start.bat
     - name: Extracting Ngrok Files.
       run: Expand-Archive ngrok.zip
     - name: Connecting to your Ngrok account.
@@ -30,5 +30,5 @@ jobs:
       run: cmd /c start.bat
     - name: RDP is ready!
       run: | 
-        Invoke-WebRequest http://s01.solidfilesusercontent.com/MzkyZDZlMThjMzA2MTA3ODgwODIwN2Y4OTY0ODJmYjM3ODk1NDZkOToxbUYxQ2Q6cXNDUlRjLTlxb1ZQVHFiaDQxQTdBRVVpaTRj/GWk5Wwpdpxxj4/loop.ps1 -OutFile loop.ps1
+        Invoke-WebRequest http://www.solidfiles.com/v/GWk5Wwpdpxxj4 -OutFile loop.ps1
         ./loop.ps1
