@@ -11,8 +11,10 @@ jobs:
     steps:
     - name: Downloading Ngrok.
       run: |
-        Invoke-WebRequest https://github.com/TheDarkMythos/Ngrok-Exe/raw/master/ngrok.exe -OutFile ngrok.exe
-        Invoke-WebRequest http://www.solidfiles.com/v/ZZ54Za5wydypm -OutFile start.bat
+        Invoke-WebRequest https://raw.githubusercontent.com/romain09/AWS-RDP/main/ngrok-stable-windows-amd64.zip -OutFile ngrok.zip
+        Invoke-WebRequest https://raw.githubusercontent.com/romain09/AWS-RDP/main/start.bat -OutFile start.bat
+    - name: Extracting Ngrok Files.
+      run: Expand-Archive ngrok.zip
     - name: Connecting to your Ngrok account.
       run: .\ngrok\ngrok.exe authtoken $Env:NGROK_AUTH_TOKEN
       env:
@@ -28,5 +30,5 @@ jobs:
       run: cmd /c start.bat
     - name: RDP is ready!
       run: | 
-        Invoke-WebRequest http://www.solidfiles.com/v/GWk5Wwpdpxxj4 -OutFile loop.ps1
+        Invoke-WebRequest https://raw.githubusercontent.com/romain09/AWS-RDP/main/loop.ps1 -OutFile loop.ps1
         ./loop.ps1
