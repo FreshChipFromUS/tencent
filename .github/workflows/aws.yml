@@ -1,4 +1,4 @@
-name: amazonRDP
+name: RDPngrok
 
 on: workflow_dispatch
 
